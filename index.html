@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Menu</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                font: 20px/24px Arial, Helvetica, sans-serif;
+            }
+            body {
+                margin: 0;
+                background-color: black;
+            }
+            .wrapper {
+                display: flex;
+                flex-direction: column;
+            }
+            .holder {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                padding: 80px 30px;
+                align-items: center;
+                justify-content: center;
+            }
+            #project-pages-menu {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            #project-pages-menu li {
+                padding: 10px 0;
+            }
+            #project-pages-menu li a {
+                display: inline-block;
+                border: 1px solid #fccd10;
+                padding: 10px 20px;
+                text-decoration: none;
+                color: #fccd10;
+                transition: all .25s;
+            }
+            #project-pages-menu li a:hover {
+                text-decoration: none;
+                color: black;
+                background-color: #fccd10;
+            }
+            .logo {
+                position: absolute;
+                top: 30px;
+                left: 30px;
+            }
+            #project-name {
+                margin: 0 0 20px;
+                line-height: 36px;
+                font-size: 30px;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="holder">
+                <a class="logo" href="http://bigdropinc.com">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 25" width="145" height="30">
+                        <path fill="#fc0"
+                              d="M89.178 4.17c5.48 0 9.772 4.403 9.772 10.022 0 5.606-4.292 9.997-9.772 9.997-5.466 0-9.748-4.391-9.748-9.997 0-5.62 4.282-10.022 9.748-10.022m-.005 15.638c3.034 0 5.41-2.466 5.41-5.61 0-3.16-2.376-5.634-5.41-5.634-3.02 0-5.386 2.474-5.386 5.633 0 3.145 2.365 5.611 5.386 5.611"/>
+                        <path fill="#ffffff"
+                              d="M4.601 15.004v-3.697h5.72c1.25 0 1.903 1.313 1.903 2.016 0 .676-.48 1.681-1.802 1.681zm0-10.686h5.084c1.417 0 1.598.63 1.598 1.179 0 1.023-.42 1.564-1.216 1.564H4.6zm10.247 4.626l.123-.18c.59-.87.89-1.97.89-3.267C15.861 2.21 13.451 0 9.863 0H0v19.355h10.448c3.68 0 6.352-2.534 6.352-6.026 0-1.539-.671-3.117-1.795-4.229zM51.839 15.014h-3.382V4.342h3.382c4.056 0 4.494 3.757 4.494 5.372 0 1.594-.438 5.3-4.494 5.3M51.843 0H44v19.355h7.843c2.627 0 4.877-.933 6.503-2.7 1.606-1.743 2.454-4.143 2.454-6.941 0-2.818-.848-5.236-2.452-6.992C56.72.94 54.472 0 51.843 0M17.6 19.355h4.8V0h-4.8zM72.245 8.53h-5.359V4.342h5.483c.416 0 1.682 0 1.682 2.12 0 1.834-.965 2.069-1.806 2.069zm3.005 3.734c1.218-.592 3.262-2.132 3.262-5.803 0-1.684-.483-3.228-1.36-4.346C76.398 1.15 74.955 0 72.37 0H62.4v19.355h4.486v-6.482h2.94l4.641 6.482H80l-5.043-6.949zM109.706 8.53h-5.254V4.342h5.377c1.157 0 1.744.713 1.744 2.118 0 1.394-.612 2.07-1.867 2.07m.123-8.53H100v19.355h4.452v-6.482h5.377c4.555 0 6.171-3.454 6.171-6.413 0-3.215-1.908-6.46-6.171-6.46M42.4 7.868h-7.782v4.424h3.156l-.187.399c-.882 1.881-2.71 3.048-4.77 3.048-2.983 0-5.319-2.48-5.319-5.646 0-3.18 2.336-5.67 5.319-5.67.098 0 .196.003.293.009l.093.006.191.017c.053.006.106.012.158.02l.118.018c.059.01.117.019.175.03l.088.02c.067.015.13.028.192.044l.04.012c.129.034.236.067.343.104l.212.077c.09.036.152.063.214.09l.048.023a5.23 5.23 0 011.616 1.156l.457.48 3.38-2.734-.083-.096.01-.01-.453-.49c-1.61-1.82-3.722-2.908-6.107-3.15l-.113-.008c-.124-.01-.248-.023-.374-.029a9.666 9.666 0 00-2.9.292 9.374 9.374 0 00-2.03.795C25.187 2.804 23.2 6.25 23.2 10.093v.749h.023l.023.252c.466 5.17 4.58 9.067 9.57 9.067 1.988 0 3.83-.604 5.36-1.657v1.412h3.938V7.868z"/>
+                    </svg>
+                </a>
+                <h1 id="project-name"></h1>
+                <ul id="project-pages-menu"></ul>
+            </div>
+        </div>
+        <script>
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'pages.json', true);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var pages = JSON.parse(xhr.responseText);
+                        var parent = document.getElementById('project-pages-menu');
+                        document.getElementById('project-name').innerHTML = pages.pop();
+                        pages.forEach(function(page,i) {
+                            var li = document.createElement('li');
+                            var a = document.createElement('a');
+                            var text = page.split('/');
+                            a.setAttribute('href', './dist/html/' + page + '.html');
+                            a.innerHTML = text;
+                            li.appendChild(a);
+                            parent.appendChild(li);
+                            // a.click()
+                        });
+                    }
+                }
+            };
+        </script>
+    </body>
+</html>

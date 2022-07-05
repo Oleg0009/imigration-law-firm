@@ -1,0 +1,420 @@
+/* scrollbars */
+.jcf-scrollable-wrapper {
+    box-sizing: content-box;
+    position: relative;
+}
+
+.jcf-scrollbar-vertical {
+    position: absolute;
+    cursor: default;
+    width: 8px;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    border-radius: 2px;
+}
+
+.jcf-scrollbar-vertical .jcf-scrollbar-slider {
+    width: 2px;
+    margin: 0 auto;
+    background: rgba(0, 58, 112, .1);
+}
+
+.jcf-scrollbar-vertical .jcf-scrollbar-dec,
+.jcf-scrollbar-vertical .jcf-scrollbar-inc {
+    height: 0;
+    width: 14px;
+    left: 0;
+    top: 0;
+}
+
+.jcf-scrollbar-vertical .jcf-scrollbar-inc {
+    top: auto;
+    bottom: 0;
+}
+
+.jcf-scrollbar-vertical .jcf-scrollbar-handle {
+    height: 41px;
+    width: 4px;
+    right: 0;
+    border-radius: 4px;
+    background-color: $verve;
+}
+
+.jcf-scrollbar-horizontal {
+    position: absolute;
+    background: #e3e3e3;
+    right: auto;
+    top: auto;
+    left: 0;
+    bottom: 0;
+    width: 1px;
+    height: 14px;
+}
+
+.jcf-scrollbar-horizontal .jcf-scrollbar-dec,
+.jcf-scrollbar-horizontal .jcf-scrollbar-inc {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    background: #bbb;
+    height: 14px;
+    width: 14px;
+}
+
+.jcf-scrollbar-horizontal .jcf-scrollbar-inc {
+    left: auto;
+    right: 0;
+}
+
+.jcf-scrollbar-horizontal .jcf-scrollbar-slider {
+    display: inline-block;
+    position: relative;
+    height: 14px;
+}
+
+.jcf-scrollbar-horizontal .jcf-scrollbar-handle {
+    position: absolute;
+    background: #888;
+    height: 14px;
+}
+
+.jcf-scrollbar.jcf-inactive .jcf-scrollbar-handle {
+    visibility: hidden;
+}
+
+.jcf-scrollbar.jcf-inactive .jcf-scrollbar-dec,
+.jcf-scrollbar.jcf-inactive .jcf-scrollbar-inc {
+    background: #e3e3e3;
+}
+
+/* select */
+.jcf-select {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 100%;
+    min-width: 150px;
+    height: 44px;
+    cursor: pointer;
+    text-align: left;
+    z-index: 20;
+    max-width: inherit;
+
+    @include media('>=large-desktop') {
+        height: 54px;
+    }
+
+    &.jcf-drop-active {
+        .jcf-select-opener {
+            &:before {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    select {
+        z-index: 1;
+        left: 0;
+        top: 0;
+    }
+
+    .jcf-select-text {
+        font: 16px/24px $ff-proximaNova;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+        padding: 9px 40px 9px 17px;
+        cursor: pointer;
+        color: rgba($black, .6);
+        border-radius: 4px;
+        border: 1px solid $black;
+        background-color: $white;
+        font-weight: $fw-semibold;
+
+        @include media('>=large-desktop') {
+            font-size: 18px;
+            //line-height: 28px;
+            padding: 12px 40px 12px 18px;
+        }
+
+        .no-touch & {
+            transition: background-color .3s, border-color .3s;
+
+            &:hover {
+                background-color: $light-grey;
+                // border-color: $light-grey;
+            }
+        }
+
+        & > span {
+            display: block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding-right: 20px;
+            @include media('>=desktop') {
+            }
+            &.jcf-option-hideme {
+                color: rgba($black, .6);
+            }
+        }
+    }
+
+    .jcf-select-opener {
+        position: absolute;
+        text-align: center;
+        width: 50px;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        @include media('>=desktop') {
+            width: 40px;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            width: 16px;
+            height: 10px;
+            margin-top: -5px;
+            background: url("#{$images-path}icons/select-arrow.svg") 50% 50% no-repeat;
+            background-size: contain;
+            transition: transform .3s;
+        }
+    }
+
+    .jcf-select-drop {
+        position: absolute;
+        top: 100%;
+        border-width: 0 1px 1px 1px;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .jcf-drop-flipped {
+        bottom: calc(100% - 27px);
+        top: auto;
+        border-width: 1px 1px 0 1px;
+        border-radius: 10px 10px 0 0;
+
+        .jcf-list {
+            padding: 0 0 27px;
+
+            ul li {
+                &:first-child {
+
+                    .jcf-option {
+                        border-radius: 10px 10px 0 0;
+                    }
+                }
+
+                &:last-child {
+                    .jcf-option {
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body > .jcf-select-drop {
+    position: absolute;
+    margin: -1px 0 0;
+    z-index: 9999;
+}
+
+.jcf-select-drop {
+    background: $white;
+    border: 1px solid $black;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+    z-index: -1;
+    margin-top: -27px;
+
+    .jcf-select-drop-content {
+        .jcf-scrollbar-horizontal {
+            display: none;
+        }
+    }
+
+    &.jcf-compact-multiple {
+
+        .jcf-option {
+
+            &:before {
+                width: 20px;
+                height: 20px;
+                left: 18px;
+                border-radius: 2px;
+                border: 1px solid $black;
+            }
+
+            &::after {
+                left: 19px;
+                top: 50%;
+                width: 11px;
+                height: 15px;
+                background-image: url('../images/icons/check.svg');
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                margin: -1px 0 0;
+            }
+
+            &.jcf-selected {
+
+                &::before {
+                    border-color: $verve;
+                    background-color: $verve;
+                }
+            }
+        }
+    }
+}
+
+.jcf-select-drop.jcf-compact-multiple .jcf-hover {
+    background: none;
+}
+
+
+.jcf-select-drop.jcf-compact-multiple {
+    .jcf-option {
+        position: relative;
+        padding-left: 30px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #003A70;
+            box-sizing: border-box;
+            border-radius: 3px;
+            transform: translateY(-50%);
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: 19px;
+            height: 15px;
+            top: 50%;
+            width: 11px;
+            transform: translateY(-50%);
+            opacity: 0;
+            margin: 0 0 0 3px;
+        }
+    }
+}
+
+.jcf-select-drop.jcf-compact-multiple .jcf-option.jcf-selected:after {
+    opacity: 1;
+}
+
+/* multiple select styles */
+.jcf-list-box {
+    overflow: hidden;
+    display: inline-block;
+    min-width: 200px;
+}
+
+/* select options styles */
+.jcf-list {
+    display: block;
+    position: relative;
+    padding: 27px 0 0;
+    .jcf-list-content {
+        vertical-align: top;
+        display: inline-block;
+        overflow: auto;
+        width: 100%;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        overflow: hidden;
+        display: block;
+
+        &:last-child {
+            .jcf-option {
+                border-radius: 0 0 10px 10px;
+            }
+        }
+    }
+
+    .jcf-overflow {
+        overflow: auto;
+    }
+
+    .jcf-option {
+        overflow: hidden;
+        display: block;
+        color: $black;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 28px;
+        padding: 8px 8px 8px 17px;
+
+        @include media('>=large-desktop') {
+            padding: 12px 12px 12px 17px;
+        }
+
+        &.jcf-hover,
+        &.jcf-selected {
+            background: $light-grey;
+        }
+
+        &.jcf-option-hideme {
+            display: none;
+        }
+
+    }
+
+    .jcf-disabled {
+        display: none !important;
+    }
+
+    .jcf-optgroup-caption {
+        display: block;
+        cursor: default;
+        padding: 0 17px;
+        font-weight: bold;
+        margin-bottom: 28px;
+        text-transform: uppercase;
+
+        @include media('>=desktop') {
+            line-height: 20px;
+        }
+    }
+
+    .jcf-optgroup {
+        display: block;
+        padding-bottom: 4px;
+
+        .jcf-option {
+            padding-left: 49px;
+            position: relative;
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: 17px;
+                top: 50%;
+                width: 20px;
+                height: 20px;
+                border-radius: 2px;
+                border: 1px solid #050505;
+            }
+        }
+    }
+}

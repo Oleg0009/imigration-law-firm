@@ -1,0 +1,7 @@
+<!-- page-assets-builder (include only slice) -->
+@@if(context.blockSelector){<!-- Assets block has selector "@@blockSelector" -->}
+<script class="page-assets-builder">
+  window.AssetsBuilder.addCss("[@@if(context.css){@@css}]");
+  window.AssetsBuilder.addJs("[@@if(context.js){@@js}]");
+</script>
+<!-- page-assets-builder (include only slice end) -->
